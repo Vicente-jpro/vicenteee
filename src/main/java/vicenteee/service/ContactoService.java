@@ -11,12 +11,8 @@ import vicenteee.utils.JPAUtil;
 
 public class ContactoService {
 	
-	private EntityManager entityManager;
+	private EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 	
-	
-	public ContactoService() {
-		this.entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-	}
 	
 	public void salvar(Contacto contacto) {
 		entityManager.getTransaction().begin();

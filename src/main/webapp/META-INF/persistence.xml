@@ -7,11 +7,13 @@
 
 
     <persistence-unit name="PERSISTENCE" transaction-type="RESOURCE_LOCAL">
+    <!-- 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		
+		 -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/AGENDA_API" /> <!-- BD Mane -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/AGENDA_API" /> <!-- BD Mane -->
             <property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
             <property name="javax.persistence.jdbc.password" value="vicente0301" /> <!-- DB Password -->
 
