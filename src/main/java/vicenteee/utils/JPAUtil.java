@@ -6,17 +6,17 @@ import javax.persistence.Persistence;
 public class JPAUtil {
 
 	private static final String PERSISTENCE_UNIT_NAME = "PERSISTENCE";
-	private static EntityManagerFactory entityManagerFactory;
+	private static EntityManagerFactory factory;
 	
 	public static EntityManagerFactory getEntityManagerFactory() {
-		if (entityManagerFactory == null)
-			entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		return entityManagerFactory;
+		if (factory == null)
+			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		return factory;
 	}
 	
-	public static void shutdown() {
-		if (entityManagerFactory != null )
-			entityManagerFactory.close();
+	public static void close() {
+		if (factory != null )
+			factory.close();
 	} 
 	
 }
