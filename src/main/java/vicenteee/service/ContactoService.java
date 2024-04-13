@@ -24,22 +24,23 @@ public class ContactoService {
 		JPAUtil.close();	
 	}
 	
-	public void atualizar(Contacto contacto, Long id) throws NotFoundException {
+	public void atualizar(Contacto contacto, Long id) throws NotFoundException{
 		Contacto cont = new Contacto();
 		cont = getContactoById(id);
 		
-		if (cont == null) {
-			throw new NotFoundException("Contacto não foi encontrado: +"+id);
-		}
 		entityManager.getTransaction().begin();
 		entityManager.merge(contacto);
 		entityManager.getTransaction().commit();
 		JPAUtil.close();	
 	}
 	
-	public Contacto getContactoById(Long id) {
+	public Contacto getContactoById(Long id) throws NotFoundException{
 		Contacto contacto = new Contacto();
 		contacto = entityManager.find(Contacto.class, id);
+		if (contacto == null) {
+			System.out.println("Contacto não foi encontrado: +"+id);
+			throw new NotFoundException("Contacto não foi encontrado: +"+id);
+		}
 	    return contacto;
 	}
 	
