@@ -43,6 +43,15 @@ public class ContactoService {
 	    return contacto;
 	}
 	
+	
+	public void eliminar(Long id) throws NotFoundException {
+		Contacto contacto = getContactoById(id);
+		
+		entityManager.getTransaction().begin();
+		entityManager.remove(contacto);
+		entityManager.getTransaction().commit();
+		
+	}
 	public List<Contacto> getContactos() {
 		List<Contacto> contactos = new ArrayList<Contacto>();
 		Query query = entityManager.createQuery("SELECT c FROM contactos c ORDER BY c.id");
