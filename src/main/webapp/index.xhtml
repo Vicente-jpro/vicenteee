@@ -13,7 +13,7 @@
   
   <h:link>Novo contacto</h:link>
   <h:form>
-	  <h:dataTable value="#{contactoBean.getContactos()}" var="contacto" border="1">
+  <h:dataTable value="#{contactoBean.contactos}" var="contacto" border="1">
 	  	<h:column>
 	  		<f:facet name="header">ID</f:facet>
 	  		#{contacto.id}
@@ -34,7 +34,7 @@
 	  		<h:commandButton value="Eliminar" type="button" />
 	  	</h:column>
 	  	 <h:column>
-	  		<h:commandButton action="#{contactoBean.prepararEdicao(contacto, contacto.id)}" value="Atualizar"/>
+	  		<h:commandButton action="#{contactoBean.prepararEdicao(contacto.id)}" value="Editar"/>
 	  	</h:column>
 	  </h:dataTable>
   </h:form>

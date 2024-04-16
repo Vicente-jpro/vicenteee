@@ -5,22 +5,26 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import javassist.NotFoundException;
 import vicenteee.model.Contacto;
 import vicenteee.service.ContactoService;
 
-@ManagedBean(name = "contactoBean")
+@ViewScoped
 @RequestScoped
+@ManagedBean(name = "contactoBean")
 public class ContactoBean {
 
 	private ContactoService contactoService;
 	
+	private List<Contacto> contactos;
+	
 	public List<Contacto> getContactos(){
 		contactoService = new ContactoService();
-		
-		return contactoService.getContactos();
+		this.contactos = contactoService.getContactos();
+		return contactos;
 		
 	}
 	
@@ -30,15 +34,15 @@ public class ContactoBean {
 		Map<String, Object> sessionMap = FacesContext.getCurrentInstance()
 													 .getExternalContext()
 													 .getSessionMap();
-		sessionMap.
-		return "faces/editar.xhtml";
+		sessionMap.put("contacto", contacto);
+		return "/faces/editar.xhtml";
 	}
 	
 	
-	public void atualizar(Contacto contacto, Long id) throws NotFoundException {
+	public String atualizar(Contacto contacto, Long id) throws NotFoundException {
 		contactoService = new ContactoService();
 		contactoService.atualizar(contacto, id);
-		System.out.println("########### "+id);
+		return "/faces/index.xhtml";
 	}
 	
 	

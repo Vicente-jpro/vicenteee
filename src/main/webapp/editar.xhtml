@@ -11,32 +11,20 @@
 		<h:outputText value="Editar Contactos"></h:outputText>
 	</h1> 
   
-  <h:link>Novo contacto</h:link>
+  <h:link value="Listar todos" outcome="index" />
+  <br/>
   <h:form>
-	  <h:dataTable value="#{contactoBean.getContactos()}" var="contacto" border="1">
-	  	<h:column>
-	  		<f:facet name="header">ID</f:facet>
-	  		#{contacto.id}
-	  	</h:column>
-	  	<h:column>
-	  		<f:facet name="header">Nome</f:facet>
-	  		#{contacto.nome}
-	  	</h:column>
-	  	<h:column>
-	  		<f:facet name="header">Email</f:facet>
-	  		#{contacto.email}
-	  	</h:column>
-	  	<h:column>
-	  		<f:facet name="header">Favorito</f:facet>
-	  		#{contacto.favorito}
-	  	</h:column>
-	  	 <h:column>
-	  		<h:commandButton value="Eliminar" type="button" />
-	  	</h:column>
-	  	 <h:column>
-	  		<h:commandButton action="#{contactoBean.atualizar(contacto, contacto.id)}" value="Atualizar"/>
-	  	</h:column>
-	  </h:dataTable>
+  	<h:inputText value="#{contacto.id}" disabled="true"></h:inputText> <br/>
+  	<h:inputText value="#{contacto.nome}"></h:inputText> <br/>
+  	<h:inputText value="#{contacto.email}"></h:inputText> <br/>
+  	<!-- 
+  	<h:selectManyCheckbox value="#{contacto.favorito}"> <br/>
+	   <f:selectItem itemValue="true" itemLabel="Favorito" checked="true"/>
+	</h:selectManyCheckbox>
+	 -->
+ 	<br/>
+    <h:commandButton action="#{contactoBean.atualizar(contacto, contacto.id)}" value="Atualizar"/>
+  	
   </h:form>
 </h:body>
 </html>

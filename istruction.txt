@@ -1,0 +1,2 @@
+Access via:
+http://localhost:8081/vicenteee/faces/index.xhtml

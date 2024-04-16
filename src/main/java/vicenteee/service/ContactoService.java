@@ -25,13 +25,12 @@ public class ContactoService {
 	}
 	
 	public void atualizar(Contacto contacto, Long id) throws NotFoundException{
-		Contacto cont = new Contacto();
-		cont = getContactoById(id);
+		Contacto cont = getContactoById(id);
+		contacto.setId(id);
 		
 		entityManager.getTransaction().begin();
 		entityManager.merge(contacto);
 		entityManager.getTransaction().commit();
-		JPAUtil.close();	
 	}
 	
 	public Contacto getContactoById(Long id) throws NotFoundException{
@@ -46,7 +45,7 @@ public class ContactoService {
 	
 	public List<Contacto> getContactos() {
 		List<Contacto> contactos = new ArrayList<Contacto>();
-		Query query = entityManager.createQuery("SELECT c FROM contactos c");
+		Query query = entityManager.createQuery("SELECT c FROM contactos c ORDER BY c.id");
 		contactos = query.getResultList();
 	    return contactos;
 	}
